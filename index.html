@@ -18,6 +18,8 @@
       background-color: var(--bg-dark);
       color: var(--text-dark);
       transition: background 0.3s, color 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
     body.light {
@@ -57,9 +59,38 @@
     .project, .blog-entry {
       margin-bottom: 2rem;
     }
+
+    .noise {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: url('https://www.dropbox.com/s/h7ab1c82ctzy83n/noise.png?raw=1') repeat;
+      background-size: 320px 320px;
+      opacity: 0.05;
+      animation: noiseAnimation 1s steps(8, end) infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes noiseAnimation {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-5%, -5%); }
+      20% { transform: translate(5%, -5%); }
+      30% { transform: translate(-5%, 5%); }
+      40% { transform: translate(5%, 5%); }
+      50% { transform: translate(-5%, -5%); }
+      60% { transform: translate(5%, -5%); }
+      70% { transform: translate(-5%, 5%); }
+      80% { transform: translate(5%, 5%); }
+      90% { transform: translate(-5%, -5%); }
+      100% { transform: translate(0, 0); }
+    }
   </style>
 </head>
 <body class="dark">
+  <div class="noise"></div>
   <button class="toggle-theme" onclick="
     document.body.classList.toggle('light');
     this.textContent = document.body.classList.contains('light') ? 'Lights off' : 'Lights on';
